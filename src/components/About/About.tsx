@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { FaGithub, FaLinkedinIn, FaCode } from 'react-icons/fa'
 import { Button } from '../ui/Button/Button'
-import perfilImg from '../../assets/PerfilTerno.png'
+import perfilImg from '../../assets/PerfilTerno.webp'
 import curriculoPdf from '../../doc/curriculo-attt-2026.pdf'
 import './About.css'
 

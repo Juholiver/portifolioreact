@@ -598,17 +598,83 @@
    ============================================================ */
 
 @media (max-width: 700px) {
-  .projects3d { padding: 68px 18px 60px; }
-  .projects3d-track { height: 640px; }
-  .project3d-card { width: min(350px, 85vw); margin-left: calc(min(350px, 85vw) / -2); min-height: 520px; }
-  .project3d-card:not([data-offset="0"]) { opacity: 0; pointer-events: none; }
-  .projects3d-arrow { width: 44px; height: 44px; }
-  .projects3d-arrow svg { width: 18px; height: 18px; }
-  .projects3d-title { font-size: clamp(28px, 8vw, 40px); }
+  .projects3d { padding: 68px 18px 60px; min-height: auto; }
+  .projects3d-header-box {
+    padding: 24px 20px 20px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(2, 6, 14, 0.85);
+  }
+  .projects3d-track {
+    height: auto;
+    perspective: none;
+    transform-style: flat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 0 8px;
+  }
+  .project3d-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 360px;
+    min-height: auto;
+    margin: 0;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(2, 8, 20, 0.9);
+    transition: none;
+    animation: none;
+    border-color: rgba(201, 162, 39, 0.25);
+    display: none;
+  }
+  .project3d-card[data-offset="0"] {
+    display: flex;
+    border-color: rgba(201, 162, 39, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    animation: none;
+  }
+  .project3d-card::before,
+  .project3d-card::after {
+    width: 14px;
+    height: 14px;
+  }
+  .project3d-card[data-offset="0"]::before,
+  .project3d-card[data-offset="0"]::after {
+    width: 18px;
+    height: 18px;
+  }
+  .project3d-card[data-offset="0"] .project3d-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+  }
+  .project3d-card[data-offset="0"] .project3d-icon {
+    width: 44px;
+    height: 44px;
+    animation: none;
+  }
+  .projects3d-arrow { display: none; }
+  .projects3d-title { font-size: clamp(24px, 7vw, 36px); }
+  .project3d-name { font-size: 1.3rem; }
+  .project3d-desc { font-size: 13px; }
+  .projects3d-indicator { margin-top: 20px; }
+  .project3d-pill { font-size: 9px; padding: 4px 10px; }
+  .project3d-tags span { font-size: 10px; padding: 4px 10px; }
+  .project3d-actions { margin-top: 12px; }
+  .project3d-btn { font-size: 10px; padding: 10px 20px; }
 }
 
 @media (max-width: 400px) {
-  .project3d-card { width: min(310px, 90vw); margin-left: calc(min(310px, 90vw) / -2); min-height: 490px; }
+  .project3d-card[data-offset="0"] { max-width: 320px; }
+  .projects3d-title { font-size: clamp(20px, 6vw, 32px); }
 }
 
 /* ============================================================

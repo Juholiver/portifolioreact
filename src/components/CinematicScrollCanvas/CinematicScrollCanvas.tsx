@@ -20,9 +20,13 @@ function buildSortedUrls(): string[] {
   return urls
 }
 
-const FRAME_URLS = buildSortedUrls()
-const FRAME_COUNT = FRAME_URLS.length
-const SMOOTHING = 0.10
+const ALL_FRAME_URLS = buildSortedUrls()
+const MOBILE_STEP = 4
+const isMobile = (): boolean => window.innerWidth <= 768
+const getFrameUrls = (): string[] =>
+  isMobile()
+    ? ALL_FRAME_URLS.filter((_, i) => i % MOBILE_STEP === 0)
+    : ALL_FRAME_URLS
 const IMAGE_W = 1920
 const IMAGE_H = 1080
 
@@ -38,6 +42,10 @@ export function CinematicScrollCanvas(): React.JSX.Element {
     const mqlReduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     const isReduced = (): boolean => mqlReduced.matches
 
+    const frameUrls = getFrameUrls()
+    const FRAME_COUNT = frameUrls.length
+    const SMOOTHING = isMobile() ? 1 : 0.10
+
     const images = new Array<HTMLImageElement | null>(FRAME_COUNT).fill(null)
     let currentFrame = 0
     let targetFrame = 0
@@ -45,8 +53,9 @@ export function CinematicScrollCanvas(): React.JSX.Element {
     let rafId: number | null = null
 
     const updateSize = (): void => {
+      const mobile = isMobile()
       const dprRaw = window.devicePixelRatio || 1
-      const maxUpscale = 1.2
+      const maxUpscale = mobile ? 1 : 1.2
       const dpr = Math.min(
         dprRaw,
         (IMAGE_W * maxUpscale) / window.innerWidth,
@@ -65,7 +74,7 @@ export function CinematicScrollCanvas(): React.JSX.Element {
       if (idx >= FRAME_COUNT || images[idx]) return
       const img = new Image()
       img.decoding = 'async'
-      img.src = FRAME_URLS[idx]
+      img.src = frameUrls[idx]
       img.onload = () => {
         images[idx] = img
         if (idx === 0 && lastRendered === -1) {
@@ -75,17 +84,19 @@ export function CinematicScrollCanvas(): React.JSX.Element {
       }
     }
 
-    for (let i = 0; i < Math.min(10, FRAME_COUNT); i++) loadFrame(i)
+    const initialLoad = isMobile() ? Math.min(4, FRAME_COUNT) : Math.min(10, FRAME_COUNT)
+    for (let i = 0; i < initialLoad; i++) loadFrame(i)
 
-    let batchIdx = 10
+    let batchIdx = initialLoad
     const loadBatch = (): void => {
-      for (let b = 0; b < 4 && batchIdx < FRAME_COUNT; b++, batchIdx++) {
+      const batchSize = isMobile() ? 2 : 4
+      for (let b = 0; b < batchSize && batchIdx < FRAME_COUNT; b++, batchIdx++) {
         loadFrame(batchIdx)
       }
       if (batchIdx < FRAME_COUNT) {
         const w = window as unknown as { requestIdleCallback?: (cb: () => void) => number }
         if (w.requestIdleCallback) w.requestIdleCallback(loadBatch)
-        else setTimeout(loadBatch, 100)
+        else setTimeout(loadBatch, isMobile() ? 200 : 100)
       }
     }
     const batchTimer = setTimeout(loadBatch, 300)
@@ -107,10 +118,9 @@ export function CinematicScrollCanvas(): React.JSX.Element {
       ctx.fillRect(0, 0, cw, ch)
 
       ctx.imageSmoothingEnabled = true
-      ctx.imageSmoothingQuality = 'high'
+      ctx.imageSmoothingQuality = isMobile() ? 'medium' : 'high'
       ctx.drawImage(img, dx, dy, dw, dh)
 
-      // Vignette cinematografico — sutil
       const grad = ctx.createRadialGradient(
         cw * 0.5, ch * 0.5, Math.min(cw, ch) * 0.65,
         cw * 0.5, ch * 0.5, Math.max(cw, ch) * 0.85,
@@ -144,7 +154,7 @@ export function CinematicScrollCanvas(): React.JSX.Element {
       rafId = requestAnimationFrame(tick)
       onScroll()
 
-      if (isReduced()) {
+      if (isReduced() || isMobile()) {
         const idx = clamp(Math.round(targetFrame), 0, FRAME_COUNT - 1)
         if (idx !== lastRendered) {
           const img = nearest(idx)

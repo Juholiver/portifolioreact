@@ -783,6 +783,33 @@
 }
 
 /* ============================================================
+   MOBILE — DISABLE HEAVY EFFECTS
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .chatbot-hud__panel {
+    background: rgba(2, 8, 20, 0.92);
+  }
+
+  .chatbot-hud__scene-glow {
+    display: none;
+  }
+
+  .chatbot-hud__scene-ring {
+    animation: none;
+    opacity: 0.2;
+  }
+
+  .chatbot-hud__scene-ring--inner {
+    animation: none;
+  }
+
+  .chatbot-hud__message {
+    animation: none;
+  }
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 

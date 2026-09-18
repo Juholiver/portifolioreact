@@ -610,17 +610,85 @@
    ============================================================ */
 
 @media (max-width: 700px) {
-  .skills3d { padding: 68px 18px 60px; }
-  .skills3d-track { height: 580px; }
-  .skill3d-card { width: min(350px, 85vw); margin-left: calc(min(350px, 85vw) / -2); min-height: 470px; }
-  .skill3d-card:not([data-offset="0"]) { opacity: 0; pointer-events: none; }
-  .skills3d-arrow { width: 44px; height: 44px; }
-  .skills3d-arrow svg { width: 18px; height: 18px; }
-  .skills3d-title { font-size: clamp(28px, 8vw, 40px); }
+  .skills3d { padding: 68px 18px 60px; min-height: auto; }
+  .skills3d-header-box {
+    padding: 24px 20px 20px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(2, 6, 14, 0.85);
+  }
+  .skills3d-track {
+    height: auto;
+    perspective: none;
+    transform-style: flat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 0 8px;
+  }
+  .skill3d-card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 360px;
+    min-height: auto;
+    margin: 0;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(2, 8, 20, 0.9);
+    transition: none;
+    animation: none;
+    border-color: rgba(201, 162, 39, 0.25);
+    display: none;
+  }
+  .skill3d-card[data-offset="0"] {
+    display: flex;
+    border-color: rgba(201, 162, 39, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    animation: none;
+  }
+  .skill3d-card::before,
+  .skill3d-card::after {
+    width: 14px;
+    height: 14px;
+  }
+  .skill3d-card[data-offset="0"]::before,
+  .skill3d-card[data-offset="0"]::after {
+    width: 18px;
+    height: 18px;
+  }
+  .skill3d-card[data-offset="0"] .skill3d-aura { display: none; }
+  .skill3d-card[data-offset="0"] .skill3d-sweep { display: none; }
+  .skill3d-card[data-offset="0"] .skill3d-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+  }
+  .skill3d-card[data-offset="0"] .skill3d-icon {
+    width: 44px;
+    height: 44px;
+    animation: none;
+  }
+  .skills3d-arrow { display: none; }
+  .skills3d-title { font-size: clamp(24px, 7vw, 36px); }
+  .skill3d-name { font-size: 1.4rem; }
+  .skill3d-desc { font-size: 13px; }
+  .skills3d-indicator { margin-top: 20px; }
+  .skill3d-pill { font-size: 9px; padding: 4px 10px; }
+  .skill3d-tags span { font-size: 10px; padding: 4px 10px; }
+  .skill3d-level { margin-top: 12px; }
+  .skill3d-bars span { height: 4px; }
 }
 
 @media (max-width: 400px) {
-  .skill3d-card { width: min(310px, 90vw); margin-left: calc(min(310px, 90vw) / -2); min-height: 440px; }
+  .skill3d-card[data-offset="0"] { max-width: 320px; }
+  .skills3d-title { font-size: clamp(20px, 6vw, 32px); }
 }
 
 /* ============================================================

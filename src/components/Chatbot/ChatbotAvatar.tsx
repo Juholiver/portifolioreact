@@ -1,22 +1,24 @@
 import { useRef, useEffect, useState, useMemo } from 'react'
 
-const frameModules = import.meta.glob('../../assets/imagens/chatbot/ezgif-frame-*.png', {
+const frameModules = import.meta.glob('../../assets/imagens/chatbot/ezgif-frame-*.webp', {
   eager: true,
   import: 'default',
 }) as Record<string, string>
 
-const FRAME_COUNT = 80
+const MOBILE_STEP = 4
+const TOTAL_FRAMES = 80
 const LERP_FACTOR = 0.12
 
 function pad3(n: number): string {
   return String(n).padStart(3, '0')
 }
 
-function buildSortedUrls(): string[] {
+function buildSortedUrls(step: number): string[] {
   const entries = Object.entries(frameModules).sort(([a], [b]) => a.localeCompare(b))
   const urls: string[] = []
-  for (let i = 1; i <= FRAME_COUNT; i++) {
-    const key = entries.find(([k]) => k.includes(`ezgif-frame-${pad3(i)}.png`))
+  for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    if (step > 1 && (i - 1) % step !== 0) continue
+    const key = entries.find(([k]) => k.includes(`ezgif-frame-${pad3(i)}.webp`))
     if (key) urls.push(key[1] as string)
   }
   return urls
@@ -27,16 +29,25 @@ interface ChatbotAvatarProps {
 }
 
 export function ChatbotAvatar({ className }: ChatbotAvatarProps): React.JSX.Element {
-  const sortedFrames = useMemo(() => buildSortedUrls(), [])
-  const [frameIndex, setFrameIndex] = useState(Math.floor(FRAME_COUNT / 2))
-  const targetFrame = useRef(FRAME_COUNT / 2)
-  const currentFrame = useRef(FRAME_COUNT / 2)
+  const mobile = typeof window !== 'undefined' && window.innerWidth <= 768
+  const step = mobile ? MOBILE_STEP : 1
+  const sortedFrames = useMemo(() => buildSortedUrls(step), [step])
+  const frameCount = sortedFrames.length
+  const mid = Math.floor(frameCount / 2)
+
+  const [frameIndex, setFrameIndex] = useState(mid)
+  const targetFrame = useRef(mid)
+  const currentFrame = useRef(mid)
   const mouseX = useRef(typeof window !== 'undefined' ? window.innerWidth / 2 : 0)
   const rafId = useRef(0)
-  const lastFrame = useRef(Math.floor(FRAME_COUNT / 2))
+  const lastFrame = useRef(mid)
 
   useEffect(() => {
     if (sortedFrames.length === 0) return
+    if (mobile) {
+      setFrameIndex(mid)
+      return
+    }
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX.current = e.clientX
@@ -45,13 +56,13 @@ export function ChatbotAvatar({ className }: ChatbotAvatarProps): React.JSX.Elem
 
     const tick = () => {
       const normalizedX = mouseX.current / window.innerWidth
-      targetFrame.current = normalizedX * (FRAME_COUNT - 1)
-      targetFrame.current = Math.max(0, Math.min(FRAME_COUNT - 1, targetFrame.current))
+      targetFrame.current = normalizedX * (frameCount - 1)
+      targetFrame.current = Math.max(0, Math.min(frameCount - 1, targetFrame.current))
 
       currentFrame.current += (targetFrame.current - currentFrame.current) * LERP_FACTOR
 
-      const frameIndex = Math.round(currentFrame.current)
-      const clampedIndex = Math.max(0, Math.min(FRAME_COUNT - 1, frameIndex))
+      const idx = Math.round(currentFrame.current)
+      const clampedIndex = Math.max(0, Math.min(frameCount - 1, idx))
 
       if (clampedIndex !== lastFrame.current) {
         lastFrame.current = clampedIndex
@@ -67,7 +78,7 @@ export function ChatbotAvatar({ className }: ChatbotAvatarProps): React.JSX.Elem
       window.removeEventListener('mousemove', onMouseMove)
       cancelAnimationFrame(rafId.current)
     }
-  }, [sortedFrames])
+  }, [sortedFrames, mobile, mid, frameCount])
 
   if (sortedFrames.length === 0) {
     return <div className={className} />
@@ -79,6 +90,7 @@ export function ChatbotAvatar({ className }: ChatbotAvatarProps): React.JSX.Elem
       src={sortedFrames[frameIndex]}
       alt="Gabizinha — assistente virtual"
       draggable={false}
+      loading={mobile ? 'eager' : 'eager'}
     />
   )
 }
