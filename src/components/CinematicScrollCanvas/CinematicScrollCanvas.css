@@ -1,0 +1,20 @@
+/* ============================================================
+   CINEMATIC BACKGROUND CANVAS
+   Canvas fixo global — 110 frames controlados pelo scroll.
+   Fica atrás de todas as sections.
+   ============================================================ */
+
+.cinematic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  background: #02060e;
+
+  pointer-events: none;
+}

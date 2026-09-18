@@ -1,0 +1,251 @@
+/* ============================================================
+   CONTACT — Forja & Pergaminho
+   Two-column layout: info left, form right
+   Glassmorphism card matching About visual language
+   ============================================================ */
+
+/* ---- Layout ---- */
+.contact__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3.5rem;
+  align-items: start;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 36px 42px;
+  background: rgba(2, 6, 14, 0.65);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(201, 162, 39, 0.03);
+  position: relative;
+}
+
+.contact__layout::before,
+.contact__layout::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.contact__layout::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid rgba(201, 162, 39, 0.4);
+  border-left: 1px solid rgba(201, 162, 39, 0.4);
+}
+
+.contact__layout::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.4);
+  border-right: 1px solid rgba(201, 162, 39, 0.4);
+}
+
+/* ---- Left column: info ---- */
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact__intro {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact__detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact__detail-label {
+  font-family: var(--font-display);
+  font-size: var(--text-kicker);
+  letter-spacing: var(--tracking-kicker-wide);
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.contact__detail-value {
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Social icons ---- */
+.contact__socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  transition:
+    color var(--dur-normal) var(--ease-out),
+    border-color var(--dur-normal) var(--ease-out),
+    background var(--dur-normal) var(--ease-out),
+    box-shadow var(--dur-normal) var(--ease-out),
+    transform var(--dur-normal) var(--ease-out);
+}
+
+.contact__social-link:hover {
+  color: var(--gold-bright);
+  border-color: var(--border-strong);
+  background: rgba(201, 162, 39, 0.08);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-3px);
+}
+
+.contact__social-link:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+/* ---- Right column: form card ---- */
+.contact__form-wrap {
+  background: rgba(2, 6, 14, 0.3);
+  border: 1px solid rgba(201, 162, 39, 0.1);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 1.75rem 1.75rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Success ---- */
+.contact-success {
+  background: rgba(22, 68, 32, 0.92);
+  color: #e6f5e8;
+  border: 1px solid rgba(46, 120, 58, 0.28);
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.35rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* ---- Meta ---- */
+.contact-meta {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  color: rgba(236, 229, 216, 0.52);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+/* ---- Counter ---- */
+.field-counter {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(236, 229, 216, 0.48);
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.field-counter--warn {
+  color: var(--gold-bright);
+}
+
+/* ---- Fallback link ---- */
+.contact-fallback-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.contact-fallback-link:hover {
+  color: var(--gold-bright);
+}
+
+.contact-fallback-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   ENTRANCE ANIMATION
+   ============================================================ */
+
+.contact__wrapper {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s var(--ease-premium),
+    transform 0.7s var(--ease-premium);
+}
+
+.contact--visible .contact__wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .contact__layout {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .contact__form-wrap {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+
+  .contact__socials {
+    justify-content: flex-start;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__wrapper {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

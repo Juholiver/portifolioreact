@@ -1,0 +1,123 @@
+/* ============================================================
+   HOME — layout da experiência cinematográfica
+   ============================================================ */
+
+/* Vinheta atmosférica global — acima do canvas, abaixo do conteúdo */
+.global-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(0, 0, 0, 0.50) 100%
+    );
+}
+
+/* Wrapper de todas as sections — sobre o canvas */
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   CINEMATIC OVERRIDES
+   Tornar backgrounds das sections transparentes para o canvas
+   cinematográfico aparecer por trás.
+   ============================================================ */
+
+/* Hero — canvas É o visual, esconder elementos CSS duplicados */
+.jm-hero {
+  background: transparent !important;
+}
+
+.jm-hero .hero__bg,
+.jm-hero .jm-visual,
+.jm-hero .jm-visual__sky,
+.jm-hero .jm-visual__mountains,
+.jm-hero .jm-visual__water,
+.jm-hero .jm-visual__arch,
+.jm-hero .jm-visual__arch-face,
+.jm-hero .jm-visual__arch-inner,
+.jm-hero .jm-visual__ring,
+.jm-hero .jm-visual__planet,
+.jm-hero .jm-visual__planet--lg,
+.jm-hero .jm-visual__planet--sm,
+.jm-hero .jm-visual__planet--xs,
+.jm-hero .jm-visual__planet--dot,
+.jm-hero .jm-visual__figure,
+.jm-hero .jm-visual__reflection {
+  display: none !important;
+}
+
+/* About — fundo, parallax e overlay totalmente transparentes */
+.about-hud {
+  background: transparent !important;
+}
+
+.about-hud__parallax-bg,
+.about-hud__parallax-fg,
+.about-hud__overlay {
+  display: none !important;
+}
+
+/* Skills — fundo e borda transparentes */
+.skills3d {
+  background: transparent !important;
+}
+
+/* Projects — fundo e borda transparentes */
+.projects3d {
+  background: transparent !important;
+}
+
+/* Contact — fundo transparente */
+#contato.ui-section {
+  background: transparent !important;
+  border-top: none !important;
+}
+
+/* Chatbot — fundo transparente */
+.chatbot-section {
+  background: transparent !important;
+}
+
+/* Footer — transparente para o canvas aparecer */
+.footer {
+  background: transparent !important;
+}
+
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: 10000;
+  padding: 12px 22px;
+  color: var(--ink-on-gold);
+  background: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transform: translate(-50%, -150%);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}

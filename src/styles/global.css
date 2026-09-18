@@ -1,0 +1,349 @@
+
+
+@import './tokens.css';
+
+
+/* ============================================================
+   1. RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family: var(--font-body);
+  line-height: 1.6;
+
+  color: var(--text);
+  background: var(--bg);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* ============================================================
+   2. ROOT / APP
+   ============================================================ */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+
+/* ============================================================
+   3. SELEÇÃO DE TEXTO
+   ============================================================ */
+
+::selection {
+  background: var(--gold);
+  color: var(--ink-on-gold);
+}
+
+::-moz-selection {
+  background: var(--gold);
+  color: var(--ink-on-gold);
+}
+
+
+/* ============================================================
+   4. SCROLLBAR
+   ============================================================ */
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+  background-clip: content-box;
+}
+
+
+/* ============================================================
+   5. CAMPOS / PLACEHOLDERS
+   ============================================================ */
+
+::placeholder {
+  color: rgba(236, 229, 216, 0.42);
+}
+
+input,
+textarea {
+  caret-color: var(--gold-bright);
+}
+
+input::selection,
+textarea::selection {
+  background: var(--gold);
+  color: var(--ink-on-gold);
+}
+
+
+/* ============================================================
+   6. FOCO ACESSÍVEL
+   ============================================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+
+/* ============================================================
+   7. CONTAINER GLOBAL
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+
+  margin-inline: auto;
+  padding-inline: var(--section-pad-x);
+}
+
+
+/* ============================================================
+   8. SEÇÃO BASE
+   ============================================================
+
+   SOMENTE estrutura mínima.
+   
+   Não define:
+   - background
+   - padding vertical
+   - layout interno
+   - cores específicas
+   - grids
+   - cards
+
+   Cada seção deve controlar isso no próprio CSS.
+   ============================================================ */
+
+.page-section {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+
+
+/* ============================================================
+   9. TIPOGRAFIA UTILITÁRIA
+   ============================================================ */
+
+.text-display {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-gold-bright {
+  color: var(--gold-bright);
+}
+
+
+/* ============================================================
+   9. UTILITÁRIOS DE TEXTO
+   ============================================================ */
+
+.truncate {
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.wrap-balance {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  text-wrap: balance;
+}
+
+
+/* ============================================================
+   10. UTILITÁRIOS DE LAYOUT
+   ============================================================ */
+
+.flex-item,
+.grid-item {
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* ============================================================
+   11. ANIMAÇÃO DE ENTRADA
+   ============================================================
+
+   Usado quando a animação é controlada por JS/IntersectionObserver.
+   ============================================================ */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.fade-in-element {
+  opacity: 1;
+  transform: translateY(0);
+
+  will-change: opacity, transform;
+
+  transition:
+    opacity 0.6s var(--ease-premium),
+    transform 0.7s var(--ease-premium);
+}
+
+
+/* ============================================================
+   12. HIGH CONTRAST
+   ============================================================ */
+
+@media (forced-colors: active) {
+  .ui-field--invalid {
+    border-width: 2px;
+  }
+
+  .ui-btn:focus-visible,
+  a:focus-visible,
+  button:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+
+/* ============================================================
+   12. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hidden {
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+
+/* ============================================================
+   13. RESPONSIVIDADE GLOBAL
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+

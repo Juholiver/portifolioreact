@@ -1,0 +1,623 @@
+/* ============================================================
+   PROJECTS 3D — Galeria cinematográfica HUD (dourado)
+   ============================================================ */
+
+.projects3d {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 28px 84px;
+  background: transparent;
+  color: #EAF6FF;
+  outline: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   BACKGROUND + OVERLAY (removed — transparent for cinematic canvas)
+   ============================================================ */
+
+.projects3d-bg,
+.projects3d-veil {
+  display: none;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.projects3d-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ============================================================
+   HEADER BOX (glassmorphism)
+   ============================================================ */
+
+.projects3d-header-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 56px 32px;
+  margin: 0 auto 0;
+  background: rgba(2, 6, 14, 0.65);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(201, 162, 39, 0.03);
+  position: relative;
+}
+
+.projects3d-header-box::before,
+.projects3d-header-box::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.projects3d-header-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid rgba(201, 162, 39, 0.4);
+  border-left: 1px solid rgba(201, 162, 39, 0.4);
+}
+
+.projects3d-header-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.4);
+  border-right: 1px solid rgba(201, 162, 39, 0.4);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.projects3d-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(201, 162, 39, 0.9);
+  margin: 0 0 14px;
+  text-shadow: 0 0 12px rgba(201, 162, 39, 0.3);
+}
+
+.projects3d-kicker::before,
+.projects3d-kicker::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: rgba(201, 162, 39, 0.4);
+}
+
+.projects3d-title {
+  margin: 0 0 14px;
+  font-family: var(--font-body);
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+
+.projects3d-title-accent {
+  font-weight: 300;
+  background: linear-gradient(180deg, #fff8e6 8%, #f3e0b5 42%, #d8c5a0 68%, #b99a5a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 10px rgba(201, 162, 39, 0.14));
+}
+
+.projects3d-sub {
+  margin: 0 auto 10px;
+  max-width: 680px;
+  color: rgba(234, 246, 255, 0.72);
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+.projects3d-context {
+  margin: 0 0 0;
+  color: rgba(201, 162, 39, 0.65);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   STAGE
+   ============================================================ */
+
+.projects3d-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+/* ============================================================
+   TRACK
+   ============================================================ */
+
+.projects3d-track {
+  position: relative;
+  width: min(1300px, 100%);
+  height: 680px;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  touch-action: pan-y;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.project3d-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(410px, 80vw);
+  min-height: 570px;
+  margin: -285px 0 0 -205px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 32px 30px;
+  border-radius: 12px;
+  background: rgba(2, 8, 20, 0.72);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid rgba(201, 162, 39, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease, filter 0.65s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* HUD corner brackets */
+.project3d-card::before,
+.project3d-card::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 5;
+  transition: border-color 0.3s ease;
+}
+
+.project3d-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid rgba(201, 162, 39, 0.25);
+  border-left: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.project3d-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+  border-right: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+/* ============================================================
+   CARD CENTER
+   ============================================================ */
+
+.project3d-card[data-offset="0"] {
+  transform: translateX(0) translateZ(90px) scale(1);
+  opacity: 1;
+  isolation: isolate;
+  border-color: rgba(201, 162, 39, 0.5);
+  background: radial-gradient(circle at 50% 28%, rgba(201, 162, 39, 0.1), rgba(2, 6, 14, 0.9) 70%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(201, 162, 39, 0.18), inset 0 0 0 1px rgba(216, 197, 160, 0.08);
+  animation: projectGlow 3.2s ease-in-out infinite;
+  cursor: default;
+}
+
+.project3d-card[data-offset="0"]::before {
+  border-top-color: rgba(201, 162, 39, 0.65);
+  border-left-color: rgba(201, 162, 39, 0.65);
+  width: 24px;
+  height: 24px;
+}
+
+.project3d-card[data-offset="0"]::after {
+  border-bottom-color: rgba(201, 162, 39, 0.65);
+  border-right-color: rgba(201, 162, 39, 0.65);
+  width: 24px;
+  height: 24px;
+}
+
+.project3d-card[data-offset="0"] .project3d-icon {
+  filter:
+    drop-shadow(0 0 10px rgba(201, 162, 39, 0.55))
+    drop-shadow(0 0 24px rgba(201, 162, 39, 0.25));
+}
+
+@keyframes projectGlow {
+  0%, 100% {
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.55),
+      0 0 18px rgba(201, 162, 39, 0.15),
+      0 0 36px rgba(201, 162, 39, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.55),
+      0 0 28px rgba(201, 162, 39, 0.28),
+      0 0 60px rgba(201, 162, 39, 0.12),
+      0 0 90px rgba(201, 162, 39, 0.06);
+  }
+}
+
+/* ============================================================
+   CARDS LATERAIS
+   ============================================================ */
+
+.project3d-card[data-offset="-1"] {
+  transform: translateX(-270px) rotateY(18deg) scale(0.84);
+  opacity: 0.85;
+  filter: blur(0.3px) brightness(0.88);
+}
+
+.project3d-card[data-offset="1"] {
+  transform: translateX(270px) rotateY(-18deg) scale(0.84);
+  opacity: 0.85;
+  filter: blur(0.3px) brightness(0.88);
+}
+
+.project3d-card[data-offset="-2"] {
+  transform: translateX(-470px) rotateY(28deg) scale(0.68);
+  opacity: 0.48;
+  filter: blur(1px) brightness(0.7);
+}
+
+.project3d-card[data-offset="2"] {
+  transform: translateX(470px) rotateY(-28deg) scale(0.68);
+  opacity: 0.48;
+  filter: blur(1px) brightness(0.7);
+}
+
+.project3d-card.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(-260px) scale(0.5);
+}
+
+.project3d-card.is-near:hover {
+  filter: blur(0) brightness(1);
+  border-color: rgba(201, 162, 39, 0.4);
+}
+
+.project3d-card.is-near:hover .project3d-icon {
+  filter: drop-shadow(0 0 14px rgba(201, 162, 39, 0.55));
+}
+
+/* ============================================================
+   PILL
+   ============================================================ */
+
+.project3d-pill {
+  align-self: flex-end;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(201, 162, 39, 0.85);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  border-radius: 999px;
+  padding: 5px 14px;
+  background: rgba(201, 162, 39, 0.06);
+}
+
+/* ============================================================
+   BADGE (ICON)
+   ============================================================ */
+
+.project3d-badge {
+  width: 96px;
+  height: 96px;
+  margin: 18px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.12), rgba(2, 10, 24, 0.55));
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  box-shadow: 0 0 30px rgba(201, 162, 39, 0.1), 0 14px 34px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), height 0.65s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project3d-icon {
+  width: 48px;
+  height: 48px;
+  color: #d8c5a0;
+  filter: drop-shadow(0 0 10px rgba(201, 162, 39, 0.35));
+  transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), height 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+}
+
+.project3d-card[data-offset="0"] .project3d-badge {
+  width: 108px;
+  height: 108px;
+  border-radius: 24px;
+  border-color: rgba(201, 162, 39, 0.45);
+  box-shadow: 0 0 40px rgba(201, 162, 39, 0.22), 0 14px 34px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.project3d-card[data-offset="0"] .project3d-icon {
+  width: 60px;
+  height: 60px;
+  animation: projectFloat 3.2s ease-in-out infinite;
+}
+
+.project3d-card.is-near .project3d-icon {
+  width: 38px;
+  height: 38px;
+  opacity: 0.9;
+}
+
+.project3d-card.is-far .project3d-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.75;
+}
+
+@keyframes projectFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.04); }
+}
+
+/* ============================================================
+   NAME + DESC
+   ============================================================ */
+
+.project3d-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.project3d-desc {
+  margin: 10px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(234, 246, 255, 0.72);
+  min-height: 54px;
+}
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+
+.project3d-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.project3d-tags span {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(216, 197, 160, 0.8);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  background: rgba(201, 162, 39, 0.05);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+
+/* ============================================================
+   STATUS
+   ============================================================ */
+
+.project3d-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(234, 246, 255, 0.65);
+}
+
+.project3d-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c9a227;
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.8);
+}
+
+.project3d-status.soon .project3d-status-dot {
+  background: rgba(234, 246, 255, 0.4);
+  box-shadow: none;
+}
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.project3d-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.project3d-btn {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 26px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.project3d-btn--primary {
+  color: #020817;
+  background: linear-gradient(135deg, #e3c15c, #c9a227);
+  border: 1px solid rgba(201, 162, 39, 0.6);
+  box-shadow: 0 0 18px rgba(201, 162, 39, 0.3);
+}
+
+.project3d-btn--primary:hover {
+  box-shadow: 0 0 26px rgba(201, 162, 39, 0.5);
+}
+
+.project3d-btn--ghost {
+  color: #d8c5a0;
+  background: rgba(201, 162, 39, 0.08);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.project3d-btn--ghost:hover {
+  border-color: rgba(201, 162, 39, 0.6);
+  box-shadow: 0 0 16px rgba(201, 162, 39, 0.25);
+}
+
+/* ============================================================
+   ARROWS
+   ============================================================ */
+
+.projects3d-arrow {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(2, 8, 20, 0.55);
+  backdrop-filter: blur(10px);
+  color: rgba(216, 197, 160, 0.85);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  z-index: 40;
+}
+
+.projects3d-arrow:hover {
+  border-color: rgba(201, 162, 39, 0.65);
+  box-shadow: 0 0 18px rgba(201, 162, 39, 0.3);
+  transform: scale(1.08);
+  color: #ffffff;
+}
+
+.projects3d-arrow:focus-visible,
+.project3d-card:focus-visible,
+.projects3d-dots button:focus-visible,
+.project3d-btn:focus-visible {
+  outline: 2px solid rgba(201, 162, 39, 0.7);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   INDICATOR
+   ============================================================ */
+
+.projects3d-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.projects3d-dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 640px;
+}
+
+.projects3d-dots button {
+  width: 28px;
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(201, 162, 39, 0.2);
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease, width 0.3s ease;
+}
+
+.projects3d-dots button.on {
+  background: #c9a227;
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.75);
+  width: 36px;
+}
+
+.projects3d-counter {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: rgba(201, 162, 39, 0.6);
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .project3d-card[data-offset="-2"],
+  .project3d-card[data-offset="2"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .project3d-card[data-offset="-1"] { transform: translateX(-260px) rotateY(18deg) scale(0.82); }
+  .project3d-card[data-offset="1"] { transform: translateX(260px) rotateY(-18deg) scale(0.82); }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+  .projects3d { padding: 68px 18px 60px; }
+  .projects3d-track { height: 640px; }
+  .project3d-card { width: min(350px, 85vw); margin-left: calc(min(350px, 85vw) / -2); min-height: 520px; }
+  .project3d-card:not([data-offset="0"]) { opacity: 0; pointer-events: none; }
+  .projects3d-arrow { width: 44px; height: 44px; }
+  .projects3d-arrow svg { width: 18px; height: 18px; }
+  .projects3d-title { font-size: clamp(28px, 8vw, 40px); }
+}
+
+@media (max-width: 400px) {
+  .project3d-card { width: min(310px, 90vw); margin-left: calc(min(310px, 90vw) / -2); min-height: 490px; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .project3d-card { transition: none; }
+  .projects3d-arrow { transition: none; }
+  .project3d-card[data-offset="0"] { animation: none; }
+  .project3d-card[data-offset="0"] .project3d-icon { animation: none; }
+}

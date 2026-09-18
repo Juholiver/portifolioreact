@@ -1,0 +1,162 @@
+/* ============================================================
+   FOOTER — Forja & Pergaminho
+   Dark cinematic conclusion to the visual journey
+   ============================================================ */
+
+.footer {
+  position: relative;
+  width: 100%;
+  padding: 4rem 2rem 2.5rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 14, 0.65) 100%);
+}
+
+.footer__inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ---- Brand ---- */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-headline);
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.footer__role {
+  font-size: 0.82rem;
+  letter-spacing: var(--tracking-kicker-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- Social icons ---- */
+.footer__socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  transition:
+    color var(--dur-normal) var(--ease-out),
+    border-color var(--dur-normal) var(--ease-out),
+    background var(--dur-normal) var(--ease-out),
+    box-shadow var(--dur-normal) var(--ease-out),
+    transform var(--dur-normal) var(--ease-out);
+}
+
+.footer__social-link:hover {
+  color: var(--blue-ice);
+  border-color: var(--border-glass-strong);
+  background: rgba(125, 211, 255, 0.08);
+  box-shadow: var(--glow-ice);
+  transform: translateY(-3px);
+}
+
+.footer__social-link:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+/* ---- Divider ---- */
+.footer__divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.35;
+}
+
+/* ---- Bottom ---- */
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-wrap: balance;
+}
+
+.footer__build {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 229, 216, 0.42);
+}
+
+/* ============================================================
+   ENTRANCE ANIMATION
+   ============================================================ */
+
+.footer__inner {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s var(--ease-premium),
+    transform 0.7s var(--ease-premium);
+}
+
+.footer--visible .footer__inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer__socials {
+    gap: 1rem;
+  }
+
+  .footer__social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1.05rem;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__inner {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

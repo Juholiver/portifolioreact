@@ -1,0 +1,102 @@
+/* ============================================================
+   FIELD — Forja & Pergaminho
+   Extraído de .form-group input/textarea
+   ============================================================ */
+
+.ui-field-group {
+  margin-bottom: 1.75rem;
+  color: var(--text);
+  min-width: 0;
+}
+
+.ui-field__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.ui-field {
+  width: 100%;
+  padding: 1.1rem 1.15rem;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-family: inherit;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  min-width: 0;
+}
+.ui-field::placeholder { color: rgba(236, 229, 216, 0.42); }
+.ui-field:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,162,39,0.12);
+}
+.ui-field:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+.ui-field--invalid {
+  border-color: var(--blood);
+  box-shadow: 0 0 0 3px rgba(122,42,30,0.18);
+}
+.ui-field:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+.ui-field--textarea {
+  resize: vertical;
+  min-height: 170px;
+  max-height: 360px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.ui-field__error {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: #ffb4a8;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.ui-form-error {
+  color: #fff;
+  background: rgba(120, 20, 20, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.5;
+}
+
+/* selection / caret tematizados — craft floor */
+.ui-field::selection { background: var(--gold); color: var(--ink-on-gold); }
+.ui-field { caret-color: var(--gold-bright); }
+
+/* autofill */
+.ui-field:-webkit-autofill,
+.ui-field:-webkit-autofill:hover,
+.ui-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--field) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

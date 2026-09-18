@@ -1,0 +1,106 @@
+/* ============================================================
+   TOKENS — "Forja & Pergaminho" (dark luxury, identidade própria)
+   Design System consolidado — extraído de DESIGN.md + uso real.
+   Todos os pares texto/fundo foram medidos: AA aprovado.
+   Ex.: --parchment sobre --bg = 15.6:1 · --gold sobre --bg = 8.1:1
+   ============================================================ */
+
+:root {
+    /* ---------- Superfícies ---------- */
+    --bg: #0d0c0a;                 /* tinta-noite */
+    --bg-secondary: #161310;       /* tinta-secundária */
+    --bg-deep: #02060e;            /* noite-profunda — About parallax */
+    --bg-alternate: #0a0908;       /* faixa alternada 1 */
+    --bg-alternate-2: #0e0c0a;     /* faixa alternada 2 */
+    --surface: #1d1915;            /* card sólido */
+    --field: #100e0c;              /* input/textarea */
+    --surface-glass: rgba(8, 14, 26, 0.72); /* About vidro */
+
+    /* ---------- Texto ---------- */
+    --text: #ece5d8;               /* pergaminho — 15.6:1 */
+    --text-muted: #a89e8d;         /* pergaminho-muted — 7.4:1 */
+    --gold: #c9a227;               /* ouro-forja — 8.1:1 */
+    --gold-bright: #e3c15c;        /* ouro-brilhante — 11.2:1 */
+    --gold-sand: #d8c5a0;          /* ouro-areia — hero kicker/thumb */
+    --ink-on-gold: #1a1408;        /* tinta-sobre-ouro — 7.6:1 */
+    --blue-ice: #7dd3ff;           /* azul-gelo — kicker About */
+    --blue-cinematic: #0ea5ff;     /* azul-cinematic — botão About */
+    --ice-white: #f2f7ff;          /* branco-gelo — título About */
+    --blue-soft: #d6e8ff;          /* ghost text */
+    --text-on-glass: rgba(230, 240, 255, 0.78);
+
+    /* ---------- Linha & borda ---------- */
+    --border: #3a3227;             /* hairline padrão */
+    --border-strong: #6b5a33;      /* ênfase / hover */
+    --border-glass: rgba(120, 180, 255, 0.14);
+    --border-glass-strong: rgba(120, 180, 255, 0.42);
+    --border-hairline-light: rgba(255, 255, 255, 0.04);
+    --border-hairline-white: rgba(255, 255, 255, 0.06);
+
+    /* ---------- Acentos ---------- */
+    --ember: #b4552d;
+    --blood: #7a2a1e;
+
+    /* ---------- Sombras & Glows ---------- */
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    --shadow-text: 0 2px 12px rgba(0, 0, 0, 0.85);
+    --glow-gold: 0 0 24px rgba(201, 162, 39, 0.35);
+    --shadow-glass: 0 24px 64px rgba(0, 0, 0, 0.52), 0 0 32px rgba(14, 165, 255, 0.08), inset 0 0 0 1px rgba(255,255,255,0.04);
+    --shadow-blue: 0 0 18px rgba(14,165,255,0.45), 0 4px 18px rgba(2,132,255,0.22);
+    --shadow-arch: inset 1px 0 0 rgba(255,255,255,0.06), 12px 0 28px rgba(0,0,0,0.85);
+    --glow-ice: 0 0 14px rgba(125,211,255,0.35);
+
+    /* ---------- Tipografia ---------- */
+    --font-display: 'Cinzel', 'Times New Roman', serif;
+    --font-body: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+
+    /* scale */
+    --text-kicker: 0.7rem;         /* ~11px */
+    --text-label: 0.9rem;
+    --text-body: 1.05rem;
+    --text-body-lg: 1.2rem;
+    --text-title: 1.25rem;
+    --text-headline: clamp(2rem, 4.5vw, 3rem);
+    --text-display: clamp(2.5rem, 6.5vw, 4.2rem);
+    --text-hero-title: clamp(48px, 5.8vw, 72px);
+
+    /* tracking */
+    --tracking-display: 0.06em;
+    --tracking-headline: 0.22em;
+    --tracking-title: 0.14em;
+    --tracking-label: 0.18em;
+    --tracking-kicker: 0.32em;
+    --tracking-kicker-wide: 0.38em;
+    --tracking-cta: 0.26em;
+
+    /* ---------- Raios ---------- */
+    --radius-sm: 3px;   /* CTA cerimonial nítido */
+    --radius-md: 10px;  /* ação compacta About */
+    --radius-lg: 12px;  /* default cards/inputs */
+    --radius-xl: 18px;  /* vidro premium */
+    --radius-pill: 50px;/* social pill */
+    --radius: 12px;     /* alias compatibilidade */
+
+    /* ---------- Espaçamento ---------- */
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 28px;
+    --space-xl: 38px;
+    --space-2xl: 56px;
+    --space-3xl: 96px;
+    --section-pad-y: 6rem;
+    --section-pad-x: 2.5rem;
+
+    /* ---------- Layout ---------- */
+    --header-h: 72px;
+    --content-max: 1400px;
+    --about-max: 820px;
+    --hero-max: 1440px;
+
+    /* ---------- Motion ---------- */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-fast: 0.22s;
+    --dur-normal: 0.35s;
+    --dur-slow: 0.6s;
+}
