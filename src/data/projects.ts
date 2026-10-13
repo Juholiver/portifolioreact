@@ -109,6 +109,15 @@ export const frontEndProjects: Project[] = [
     linkLabel: 'Ver Projeto',
     icon: 'dumbbell',
   },
+  {
+    id: 'forge-ops',
+    title: 'Forge-Ops Frontend',
+    description: 'Painel operacional com autenticação e interface moderna.',
+    technologies: 'React, TypeScript, Vite',
+    link: 'https://forge-ops-three.vercel.app/login',
+    linkLabel: 'Ver Projeto',
+    icon: 'forge',
+  },
 ]
 
 export const backEndProjects: Project[] = [
@@ -140,6 +149,15 @@ export const backEndProjects: Project[] = [
     link: 'https://github.com/Juholiver/ApiAuthAcademia',
     linkLabel: 'Ver Código',
     icon: 'database',
+  },
+  {
+    id: 'forge-ops-backend',
+    title: 'Forge-Ops Backend',
+    description: 'API REST para o Forge-Ops com autenticação e gestão de dados.',
+    technologies: 'Node.js, API REST',
+    link: 'https://github.com/Juholiver/ForgeOps-BackEnd',
+    linkLabel: 'Ver Código',
+    icon: 'server',
   },
 ]
 

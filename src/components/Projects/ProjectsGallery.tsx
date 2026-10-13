@@ -6,6 +6,7 @@ import {
   FaAppleAlt,
   FaCloudSun,
   FaCode,
+  FaCogs,
   FaComments,
   FaDatabase,
   FaDumbbell,
@@ -42,6 +43,8 @@ function find(id: string): Project {
 const GALLERY: GalleryItem[] = [
   { project: find('winterforge'), icon: FaDumbbell, category: 'Full Stack' },
   { project: find('sfp'), icon: FaStore, category: 'Full Stack' },
+  { project: find('forge-ops'), icon: FaCogs, category: 'Frontend' },
+  { project: find('forge-ops-backend'), icon: FaServer, category: 'Backend' },
   { project: find('provet'), icon: FaPaw, category: 'SaaS' },
   { project: find('analisador'), icon: FaCode, category: 'IA' },
   { project: find('academia-ia'), icon: FaHeartbeat, category: 'IA' },
