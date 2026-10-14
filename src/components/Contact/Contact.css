@@ -214,7 +214,7 @@
     transform 0.7s var(--ease-premium);
 }
 
-.contact--visible .contact__wrapper {
+.contact__wrapper.contact--visible {
   opacity: 1;
   transform: translateY(0);
 }

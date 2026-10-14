@@ -289,6 +289,9 @@ export function Skills(): React.JSX.Element {
           duration: 0.8,
           ease: 'power3.out',
           stagger: 0.06,
+          // Limpa os estilos inline ao final, senão o GSAP sobrescreve
+          // as posições do carrossel definidas via CSS [data-offset].
+          clearProps: 'transform,opacity',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 72%' },
         },
       )
